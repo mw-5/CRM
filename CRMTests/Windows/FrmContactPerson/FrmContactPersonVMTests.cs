@@ -78,7 +78,7 @@ namespace CRM.Windows.FrmContactPerson.Tests
             Assert.AreEqual(m.ContactPersons[lastEntry][def.Email.Name], TestContactPerson.email);
             Assert.AreEqual(m.ContactPersons[lastEntry][def.Phone.Name], TestContactPerson.phone);
             Assert.AreEqual(m.ContactPersons[lastEntry][def.MainContact.Name], TestContactPerson.mainContact);
-
+        
             // clean up
             m.ExecuteActionQuery(String.Format("DELETE FROM {0} WHERE {1} = {2};", def.TblName, def.Cid.Name, TestContactPerson.cid));
             TestCase.CleanUp();
