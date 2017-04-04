@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="CRM.Pages.Cockpit.CockpitView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CRM.Pages.Cockpit"
+             mc:Ignorable="d" 
+             d:DesignHeight="3000" d:DesignWidth="3000" xmlns:cc="clr-namespace:CRM.CustomControls" xmlns:n="clr-namespace:CRM.Pages.Cockpit">
+    <UserControl.Resources>
+        <Style x:Key="LabelBorder" TargetType="Label" BasedOn="{StaticResource lblAccent}">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource Background}">
+        <Label Style="{StaticResource lblHeader}" x:Name="lblCompany" Content="{Binding Company}" HorizontalAlignment="Left" Height="45" Margin="314,34,0,0" VerticalAlignment="Top" Width="620" HorizontalContentAlignment="Left"/>
+        <Grid HorizontalAlignment="Left" Height="143" Margin="40,131,0,0" VerticalAlignment="Top" Width="401" Name="grdMasterData">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="{Binding Strings[Cid]}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="{Binding Cid}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="{Binding Strings[Address]}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding Address}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="{Binding Strings[Zip]}" Style="{StaticResource LabelBorder}" />
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding Zip}" Style="{StaticResource LabelBorder}" />
+            <Label Grid.Row="3" Grid.Column="0" Content="{Binding Strings[City]}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="{Binding City}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="{Binding Strings[Country]}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="4" Grid.Column="1" Content="{Binding Country}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="{Binding Strings[ContractId]}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="5" Grid.Column="1" Content="{Binding ContractId}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="6" Grid.Column="0" Content="{Binding Strings[ContractDate]}" Style="{StaticResource LabelBorder}"/>
+            <Label Grid.Row="6" Grid.Column="1" Content="{Binding ContractDate}" Style="{StaticResource LabelBorder}"/>
+        </Grid>
+        <cc:TableControlDv Margin="488,131,0,0" Width="549" Height="143" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding ContactPersons}" CanUserAddRows="False" CanUserDeleteRows="False" SelectedItem="{Binding SelectedContactPerson}">
+            <cc:TableControlDv.Resources>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding main_contact}" Value="true">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </cc:TableControlDv.Resources>
+            <cc:TableControlDv.IgnorableColumns>
+                <DataGridTextColumn Header="id"/>
+                <DataGridTextColumn Header="cid"/>
+                <DataGridTemplateColumn Header="main_contact"/>
+            </cc:TableControlDv.IgnorableColumns>
+        </cc:TableControlDv>
+        <cc:TableControlDv Margin="40,312,0,0" Width="997" Height="240" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Notes}" SelectedItem="{Binding SelectedNote}" CanUserAddRows="False" CanUserDeleteRows="False">
+            <cc:TableControlDv.Resources>
+                <DataTemplate x:Key="DefaultTemplate"></DataTemplate>
+                <DataTemplate x:Key="AttachmentTemplate">
+                    <Image Height="24" Width="24" Source="/CRM;component/Resources/PaperClip.jpg" Cursor="Hand">
+                        <Image.InputBindings>
+                            <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.OpenAttachmentCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
+                        </Image.InputBindings>
+                    </Image>
+                </DataTemplate>
+                <n:AttachmentTemplateSelector x:Key="AttachmentTemplateSelector" AttachmentTemplate="{StaticResource AttachmentTemplate}" DefaultTemplate="{StaticResource DefaultTemplate}"/>
+            </cc:TableControlDv.Resources>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header=" " CellTemplateSelector="{StaticResource AttachmentTemplateSelector}" />
+            </DataGrid.Columns>
+            <cc:TableControlDv.IgnorableColumns>
+                <DataGridTextColumn Header="id"/>
+                <DataGridTextColumn Header="cid"/>
+            </cc:TableControlDv.IgnorableColumns>
+        </cc:TableControlDv>
+        <Button x:Name="btnStart" Content="{Binding Strings[GoToStart]}" HorizontalAlignment="Left" Margin="40,43,0,0" VerticalAlignment="Top" Width="75" Command="{Binding NavStartCommand}" Height="20"/>
+        <Button x:Name="btnListOfCustomers" Content="{Binding Strings[GoToListOfCustomers]}" HorizontalAlignment="Left" Margin="120,43,0,0" VerticalAlignment="Top" Width="148" Command="{Binding NavListOfCustomers}" Height="20"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="68,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding CidSearchBox, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding SearchCommand}" Key="Return"/>
+            </TextBox.InputBindings>
+        </TextBox>
+        <Label Content="{Binding Strings[Cid]}" HorizontalAlignment="Left" Margin="-32,72,0,0" VerticalAlignment="Top" Height="29" />
+        <Image x:Name="image" HorizontalAlignment="Left" Height="23" Margin="193,78,0,0" VerticalAlignment="Top" Width="24"  Cursor="Hand" Source="/CRM;component/Resources/Search-icon.png">
+            <Image.InputBindings>
+                <MouseBinding Command="{Binding SearchCommand}" Gesture="LeftClick" />
+            </Image.InputBindings>
+        </Image>
+        <Button Content="{Binding Strings[NewNote]}" HorizontalAlignment="Left" Margin="1042,340,0,0" VerticalAlignment="Top" Width="134" Command="{Binding NewNoteCommand}"/>
+        <Button  Content="{Binding Strings[EditNote]}" HorizontalAlignment="Left" Margin="1042,365,0,0" VerticalAlignment="Top" Width="134" Command="{Binding EditNoteCommand}"/>
+        <Button  Content="{Binding Strings[OpenCustomerFolder]}" HorizontalAlignment="Left" Margin="1042,390,0,0" VerticalAlignment="Top" Width="134" Command="{Binding OpenFolderCommand}"/>
+        <Button x:Name="button" Content="{Binding Strings[NewContactPerson]}" HorizontalAlignment="Left" Margin="1042,147,0,0" VerticalAlignment="Top" Width="134" Command="{Binding NewContactPersonCommand}"/>
+        <Button x:Name="button1" Content="{Binding Strings[EditContactPerson]}" HorizontalAlignment="Left" Margin="1042,172,0,0" VerticalAlignment="Top" Width="134" Command="{Binding EditContactPersonCommand}"/>
+    </Grid>
+</UserControl>

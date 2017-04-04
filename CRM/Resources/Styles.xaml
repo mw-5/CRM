@@ -1,0 +1,77 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CRM.Resources">
+
+    <Color A="255" R="183" G="216" B="41" x:Key="ColorBackground"/>
+    <Color A="128" R="183" G="216" B="41" x:Key="ColorBackground2"/>
+    <Color A="255" R="55" G="28" B="30" x:Key="ColorAccent"/>
+    <Color A="255" R="159" G="80" B="9" x:Key="ColorAccentLight"/>
+    <RadialGradientBrush x:Key="rgbBackground">
+        <RadialGradientBrush.GradientStops>
+            <GradientStop Color="{StaticResource ColorBackground2}" Offset="0"/>
+            <GradientStop Color="{StaticResource ColorBackground}" Offset="1"/>
+        </RadialGradientBrush.GradientStops>
+    </RadialGradientBrush>
+    <SolidColorBrush Color="{StaticResource ColorAccent}" x:Key="scbAccent"/>
+    <SolidColorBrush Color="{StaticResource ColorAccentLight}" x:Key="scbAccentLight"/>
+    <Style TargetType="Grid" x:Key="Background">
+        <Setter Property="Background" Value="{StaticResource rgbBackground}"/>
+    </Style>
+    <Style x:Key="lblAccent" TargetType="Label">
+        <Setter Property="Background" Value="{StaticResource scbAccent}"/>
+        <Setter Property="FontFamily" Value="Tahoma"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+    <Style x:Key="lblHeader" TargetType="Label">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="Foreground" Value="{StaticResource scbAccent}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="22"/>
+    </Style>
+    <Style x:Key="tbHeader" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="Foreground" Value="{StaticResource scbAccent}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="TextDecorations" Value="Underline"/>
+    </Style>
+    <Style TargetType="Label">
+        <Setter Property="Foreground" Value="{StaticResource scbAccent}"/>
+        <Setter Property="FontFamily" Value="Segoe Print" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="MinWidth" Value="100"/>
+    </Style>
+    <Style TargetType="CheckBox">
+        <Setter Property="FontFamily" Value="Segoe Print"/>
+        <Setter Property="Foreground" Value="{StaticResource scbAccent}"/>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" BorderThickness="1" BorderBrush="{StaticResource scbAccent}">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="{StaticResource ColorAccentLight}"/>
+                                    <GradientStop Offset="0.1" Color="{StaticResource ColorAccent}"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="BlanchedAlmond"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

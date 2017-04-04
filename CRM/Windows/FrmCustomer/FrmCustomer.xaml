@@ -1,0 +1,11 @@
+﻿<Window x:Class="CRM.Windows.FrmCustomer.FrmCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRM.Windows.FrmCustomer"
+        mc:Ignorable="d"
+        Title="Customer" Height="320" Width="320" xmlns:n="clr-namespace:CRM.Windows.FrmCustomer">
+    <!-- DataContext is set in code behind -->
+    <n:FrmCustomerView/>
+</Window>

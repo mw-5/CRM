@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="CRM.Pages.ListOfCustomers.ListOfCustomersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CRM.Pages.ListOfCustomers"
+             mc:Ignorable="d" 
+             d:DesignHeight="3000" d:DesignWidth="3000" xmlns:cc="clr-namespace:CRM.CustomControls">
+    <Grid Style="{StaticResource Background}">
+        <TextBlock Style="{StaticResource tbHeader}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Height="52" Width="600" Text="{Binding Strings[ListOfCustomers]}" TextAlignment="Center"/>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,51,0,0" Content="{Binding Strings[GoToStart]}" Height="23" Width="75" Command="{Binding NavStartCommand}" />
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="101,51,0,0" Content="{Binding Strings[ShowCustomerInCockpit]}" Height="23" Width="197" Command="{Binding NavCockpitCommand}" />
+        <cc:TableControlDv Margin="20,120,20,20" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedRow}" VerticalAlignment="Top" HorizontalAlignment="Left" CanUserAddRows="False" CanUserDeleteRows="False">
+            <cc:TableControlDv.Resources>
+                <Style TargetType="{x:Type DataGridCell}">
+
+                </Style>
+            </cc:TableControlDv.Resources>
+        </cc:TableControlDv>
+        <Label x:Name="label" Content="{Binding Strings[HintFiltering]}" HorizontalAlignment="Left" Margin="20,89,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="{Binding Strings[NewCustomer]}" HorizontalAlignment="Left" Margin="303,51,0,0" VerticalAlignment="Top" Width="91" Height="23" Command="{Binding NewCustomerCommand}"/>
+        <Button x:Name="button1" Content="{Binding Strings[EditCustomer]}" HorizontalAlignment="Left" Margin="399,51,0,0" VerticalAlignment="Top" Width="118" Height="23" Command="{Binding EditCustomerCommand}"/>
+    </Grid>
+</UserControl>

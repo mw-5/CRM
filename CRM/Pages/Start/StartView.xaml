@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="CRM.Pages.Start.StartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CRM.Pages.Start"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <UserControl.Resources>
+        <Duration x:Key="aniDuration">00:00:01</Duration>
+        <sys:Boolean x:Key="isAnimated">True</sys:Boolean>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource Background}">
+        <Canvas>
+            <Rectangle HorizontalAlignment="Left" Height="40"  Stroke="Black" VerticalAlignment="Top" Width="125" Fill="{StaticResource scbAccent}" Canvas.Left="79" Canvas.Top="117">
+                <Rectangle.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={StaticResource isAnimated}}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation From="2000" To="79" Storyboard.TargetProperty="(Canvas.Left)" Duration="{StaticResource aniDuration}"/>
+                                            <DoubleAnimation From="1100" To="117" Storyboard.TargetProperty="(Canvas.Top)" Duration="{StaticResource aniDuration}"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="125" Fill="{StaticResource scbAccent}" Canvas.Left="79" Canvas.Top="64">
+                <Rectangle.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={StaticResource isAnimated}}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation From="2000" To="79" Storyboard.TargetProperty="(Canvas.Left)" Duration="{StaticResource aniDuration}"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="125" Fill="{StaticResource scbAccent}" Canvas.Left="79" Canvas.Top="169">
+                <Rectangle.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={StaticResource isAnimated}}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation From="1100" To="169" Storyboard.TargetProperty="(Canvas.Top)" Duration="{StaticResource aniDuration}"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
+        </Canvas>
+        <Button x:Name="button" Content="{Binding Strings[Cockpit]}" HorizontalAlignment="Left" Margin="103,76,0,0" VerticalAlignment="Top" Width="75" Command="{Binding NavCockpitCommand}"/>
+        <Button x:Name="button1" Content="{Binding Strings[Customers]}" HorizontalAlignment="Left" Margin="103,128,0,0" VerticalAlignment="Top" Width="75" Command="{Binding NavListOfCustomersCommand}"/>
+        <Button x:Name="button2" Content="{Binding Strings[Refresh]}" HorizontalAlignment="Left" Margin="103,181,0,0" VerticalAlignment="Top" Width="75" Command="{Binding RefreshTablesCommand}"/>
+    </Grid>
+</UserControl>
