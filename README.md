@@ -7,4 +7,5 @@ and adding notes to a customer as well as files. Application supports localizati
 <li>To set up database follow instructions in SetUpCrmDb.sql.</li>
 <li>Set up a path where folders with files for each customer will be created and specify this path in config.xml</li>
 <li>Afterwards you should be able to test and build solution with VS 2015.</li>
+<li>Build solution in release mode to enable filtering of tables.</li>
 </ul>
