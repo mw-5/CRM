@@ -28,9 +28,12 @@ namespace CRM
         }
 
         private void LoadConfig()
-        {
+        {            
             XmlDocument xdoc = new XmlDocument();
             xdoc.Load("Config.xml");
+
+            Language = xdoc.SelectSingleNode("//language").InnerText;
+            SetStringsDictionary();
 
             ConnectionString = "Server=" + xdoc.SelectSingleNode("//connectionString/server").InnerText + ";"
                 + "User Id=" + xdoc.SelectSingleNode("//connectionString/user").InnerText + ";"
@@ -47,10 +50,7 @@ namespace CRM
             {
                 MessageBox.Show(String.Format(@Strings["MsgConfigPathDoesNotExist"].ToString(), PathCustomerFolders));
                 Environment.Exit(0);            
-            }
-
-            Language = xdoc.SelectSingleNode("//language").InnerText;
-            SetStringsDictionary();
+            }                        
         }
 
         public String ConnectionString { get; private set; }
